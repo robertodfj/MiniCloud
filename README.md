@@ -59,7 +59,7 @@ MiniCloud/
 CREATE DATABASE minicloud CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'minicloud_user'@'localhost' IDENTIFIED BY 'tu_password';
 GRANT ALL PRIVILEGES ON minicloud.* TO 'minicloud_user'@'localhost';
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES; ```
 
 spring.datasource.url=jdbc:mysql://localhost:3306/minicloud?useSSL=false&serverTimezone=UTC
 spring.datasource.username=minicloud_user
@@ -70,7 +70,7 @@ spring.jpa.show-sql=true
 
 ---
 
-## ⚙️ Como ejecutar tu proyecto
+### ⚙️ Como ejecutar tu proyecto
 
 # Clonar el repositorio
 git clone https://github.com/tuusuario/minicloud.git
@@ -81,7 +81,7 @@ mvn spring-boot:run
 
 ---
 
-📧 Créditos
+#### 📧 Créditos
 
 Desarrollado por [robertodfj / Roberto Frutos Jiménez]
 Proyecto académico (Fase 3) — Desarrollo de Aplicaciones Multiplataforma
@@ -89,7 +89,7 @@ Proyecto académico (Fase 3) — Desarrollo de Aplicaciones Multiplataforma
 
 ⸻
 
-🌟 Licencia
+#### 🌟 Licencia
 
 Este proyecto se distribuye bajo la licencia MIT.
 Eres libre de usarlo, modificarlo y adaptarlo con fines educativos o personales.

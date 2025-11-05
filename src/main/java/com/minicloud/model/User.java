@@ -1,25 +1,31 @@
 package com.minicloud.model;
 
-import jakarta.persistence.*;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+
 @Entity
-@Table(name="Users")
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="user_id")
     private long id;
 
     @NotBlank(message = "El nombre de usuario no puede estar en blanco")
-    @Column (unique = true)
+    @Column(name= "user_name", unique = true) 
     private String userName;
 
     @NotBlank(message = "El email de usuario no puede estar en blanco")
-    @Column(unique = true)
+    @Column(name= "user_email", unique = true)  
     private String email;
 
     @NotBlank(message = "La contraseña no puede estar en blanco")
+    @Column(name="user_password")
     private String password;
 
     public User() {

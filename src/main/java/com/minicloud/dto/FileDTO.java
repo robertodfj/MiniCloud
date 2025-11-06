@@ -1,16 +1,14 @@
 package com.minicloud.dto;
 
-import com.minicloud.model.User;
-
 public class FileDTO {
     private Long id;
     private String fileName;
-    private User userCreator;
+    private UserDTO userCreator;
 
     public FileDTO() {
     }
 
-    public FileDTO(Long id, String fileName, User userCreator) {
+    public FileDTO(Long id, String fileName, UserDTO userCreator) {
         this.id = id;
         this.fileName = fileName;
         this.userCreator = userCreator;
@@ -32,11 +30,11 @@ public class FileDTO {
         this.fileName = fileName;
     }
 
-    public User getUserCreator() {
+    public UserDTO getUserCreator() {
         return userCreator;
     }
 
-    public void setUserCreator(User userCreator) {
+    public void setUserCreator(UserDTO userCreator) {
         this.userCreator = userCreator;
     }
 

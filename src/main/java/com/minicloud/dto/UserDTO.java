@@ -1,12 +1,24 @@
 package com.minicloud.dto;
 
 public class UserDTO {
+    private Long id;
     private String userName;
     private String email;
 
-    public UserDTO(String userName, String email) {
+    public UserDTO() {
+    }
+
+    public UserDTO(Long id, String userName, String email) {
+        this.id = id;
         this.userName = userName;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserName() {

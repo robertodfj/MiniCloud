@@ -22,7 +22,7 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity<?> createUser(UserDTO userDTO) {
         try {
-            userService.createUser(UserMapper.toModel(userDTO));
+            UserService.createUser(UserMapper.toModel(userDTO));
             return ResponseEntity.ok("User created successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -41,8 +41,8 @@ public class UserController {
 
     @GetMapping("/exists")
     public ResponseEntity<?> userExists(String username, String email) {
-        boolean existsByUsername = userService.userExistsByUsername(username);
-        boolean existsByEmail = userService.userExistsByEmail(email);
+        boolean existsByUsername = UserService.userExistsByUsername(username);
+        boolean existsByEmail = UserService.userExistsByEmail(email);
         return ResponseEntity.ok("Exists by username: " + existsByUsername + ", Exists by email: " + existsByEmail);
     }
 }

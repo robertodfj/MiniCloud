@@ -1,28 +1,39 @@
 package com.minicloud.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.minicloud.model.FileMeta;
+import com.minicloud.model.User;
 import com.minicloud.repository.FileRepository;
 
 @Service
 public class FileService {
     
     @Autowired
-    private static FileRepository fileRepository;
+    private FileRepository fileRepository;
 
-    public static FileMeta saveFileMeta(FileMeta fileMeta) {
+    public FileMeta saveFileMeta(FileMeta fileMeta) {
         return fileRepository.save(fileMeta);
     }
 
-    public static FileMeta getFileMetaByNameAndUser(String fileName, com.minicloud.model.User user) {
+    public FileMeta getFileMetaById(Long id) {
+        return fileRepository.findById(id).orElse(null);
+    }
+
+    public FileMeta getFileMetaByNameAndUser(String fileName, String user) {
         return fileRepository.findByNameAndUserCreator(fileName, user);
     }
 
-    public static java.util.List<FileMeta> getFilesByUser(com.minicloud.model.User user) {
+    public  List<FileMeta> getFilesByUser(User user) {
         return fileRepository.findByUserCreator(user);
     }
 
-    
+    public void deleteFile(Long id) {
+        fileRepository.deleteById(id);
+    }
+
+
 }

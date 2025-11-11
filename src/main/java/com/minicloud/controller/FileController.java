@@ -24,12 +24,7 @@ public class FileController {
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(FileDTO fileDTO) {
-        try {
-            fileService.saveFileMeta(FileMapper.toModel(fileDTO));
-            return ResponseEntity.ok("File uploaded successfully");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+       
     }
 
     @GetMapping("/by-user")

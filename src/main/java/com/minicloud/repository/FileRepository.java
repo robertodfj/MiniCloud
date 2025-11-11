@@ -44,5 +44,6 @@ public interface FileRepository extends JpaRepository<FileMeta, Long> {
     
     List<FileMeta> findByUserCreator(User userCreator);
     FileMeta findByNameAndUserCreator(String fileName, String userCreatorName);
+    FileMeta findByName(String fileName);
 
 }

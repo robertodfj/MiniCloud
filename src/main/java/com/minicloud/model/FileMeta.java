@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -21,18 +22,28 @@ public class FileMeta {
     @Column(name="file_name")
     private String fileName;
 
-    @Column(name="user_creator")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User userCreator;
 
+    @Lob  // Indica que es un campo grande (Large OBject)
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] data;
+
     public FileMeta() {
     }
 
-    public FileMeta(String fileName, long id, User userCreator) {
+    public FileMeta(String fileName, User userCreator, byte[] data) {
+        this.fileName = fileName;
+        this.userCreator = userCreator;
+        this.data = data;
+    }
+
+    public FileMeta(String fileName, long id, User userCreator, byte[] data) {
         this.fileName = fileName;
         this.id = id;
         this.userCreator = userCreator;
+        this.data = data;
     }
 
     public long getId() {
@@ -57,6 +68,14 @@ public class FileMeta {
 
     public void setUserCreator(User userCreator) {
         this.userCreator = userCreator;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
 }

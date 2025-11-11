@@ -21,11 +21,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public static User getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public static User getUserById(Long id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 

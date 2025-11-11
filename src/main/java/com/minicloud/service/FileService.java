@@ -23,6 +23,10 @@ public class FileService {
         return fileRepository.findById(id).orElse(null);
     }
 
+    public FileMeta getFileMetaByName(String fileName) {
+        return fileRepository.findByName(fileName);
+    }
+
     public FileMeta getFileMetaByNameAndUser(String fileName, String user) {
         return fileRepository.findByNameAndUserCreator(fileName, user);
     }

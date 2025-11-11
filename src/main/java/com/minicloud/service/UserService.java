@@ -25,6 +25,10 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public static User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
     public static boolean userExistsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }

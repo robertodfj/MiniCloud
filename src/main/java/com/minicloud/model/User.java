@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -28,14 +29,18 @@ public class User {
     @Column(name="user_password")
     private String password;
 
+    @OneToOne(mappedBy = "roleUser")
+    private ROLE role;
+
     public User() {
     }
 
-    public User(String email, long id, String password, String userName) {
+    public User(String email, long id, String password, String userName, ROLE role) {
         this.email = email;
         this.id = id;
         this.password = password;
         this.userName = userName;
+        this.role = role;
     }
 
     public long getId() {
@@ -68,6 +73,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ROLE getRole() {
+        return role;
+    }
+
+    public void setRole(ROLE role) {
+        this.role = role;
     }
 
 }

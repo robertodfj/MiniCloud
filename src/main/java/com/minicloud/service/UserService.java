@@ -10,9 +10,9 @@ import com.minicloud.repository.UserRepository;
 public class UserService {
     
     @Autowired
-    private static UserRepository userRepository;
+    private UserRepository userRepository;
 
-    public static User createUser(User user) {
+    public User createUser(User user) {
         String email = user.getEmail();
         if (userRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("Email already in use: " + email);
@@ -29,16 +29,35 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public static boolean userExistsByUsername(String username) {
+    public boolean userExistsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
 
-    public static boolean userExistsByEmail(String email) {
+    public boolean userExistsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public void generateToken(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user != null) {
+            int token = (int)(Math.random() * 900000) + 100000; // Genera un token de 6 dígitos
+            user.setAuthenticationToken(token);
+            userRepository.save(user);
+            
+            // Logica para enviarel el token via email
+        }
+    }
+
+    public void authenticateUser(String email, int token) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user != null && user.getAuthenticationToken() == token) {
+            user.setAuthenticated(true);
+            userRepository.save(user);
+        }
     }
 
 }

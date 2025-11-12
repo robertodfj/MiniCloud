@@ -17,12 +17,12 @@ import com.minicloud.service.UserService;
 public class UserController {
 
     @Autowired
-    private static UserService userService;
+    private UserService userService;
     
     @PostMapping("/create")
     public ResponseEntity<?> createUser(UserDTO userDTO) {
         try {
-            UserService.createUser(UserMapper.toModel(userDTO));
+            userService.createUser(UserMapper.toModel(userDTO));
             return ResponseEntity.ok("User created successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -41,8 +41,8 @@ public class UserController {
 
     @GetMapping("/exists")
     public ResponseEntity<?> userExists(String username, String email) {
-        boolean existsByUsername = UserService.userExistsByUsername(username);
-        boolean existsByEmail = UserService.userExistsByEmail(email);
+        boolean existsByUsername = userService.userExistsByUsername(username);
+        boolean existsByEmail = userService.userExistsByEmail(email);
         return ResponseEntity.ok("Exists by username: " + existsByUsername + ", Exists by email: " + existsByEmail);
     }
 }

@@ -32,18 +32,21 @@ public class User {
     @OneToOne(mappedBy = "roleUser")
     private ROLE role;
 
-    private boolean authenticated;
+    private boolean authenticated = false;
+
+    private int authenticationToken;
 
     public User() {
     }
 
-    public User(String email, long id, String password, String userName, ROLE role, boolean authenticated) {
+    public User(String email, long id, String password, String userName, ROLE role, boolean authenticated, int authenticationToken) {
         this.email = email;
         this.id = id;
         this.password = password;
         this.userName = userName;
         this.role = role;
         this.authenticated = authenticated;
+        this.authenticationToken = authenticationToken;
     }
 
     public long getId() {
@@ -92,6 +95,14 @@ public class User {
 
     public void setAuthenticated(boolean authenticated) {
         this.authenticated = authenticated;
+    }
+
+    public int getAuthenticationToken() {
+        return authenticationToken;
+    }
+
+    public void setAuthenticationToken(int authenticationToken) {
+        this.authenticationToken = authenticationToken;
     }
 
 }

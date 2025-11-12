@@ -32,8 +32,10 @@ public class User {
     @OneToOne(mappedBy = "roleUser")
     private ROLE role;
 
+    @Column(name="is_authenticated")
     private boolean authenticated = false;
 
+    @Column(name="authentication_token")
     private int authenticationToken;
 
     public User() {

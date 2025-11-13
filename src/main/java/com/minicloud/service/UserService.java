@@ -41,23 +41,4 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void generateToken(String email) {
-        User user = userRepository.findByEmail(email).orElse(null);
-        if (user != null) {
-            int token = (int)(Math.random() * 900000) + 100000; // Genera un token de 6 dígitos
-            user.setAuthenticationToken(token);
-            userRepository.save(user);
-            
-            // Logica para enviarel el token via email
-        }
-    }
-
-    public void authenticateUser(String email, int token) {
-        User user = userRepository.findByEmail(email).orElse(null);
-        if (user != null && user.getAuthenticationToken() == token) {
-            user.setAuthenticated(true);
-            userRepository.save(user);
-        }
-    }
-
 }

@@ -1,10 +1,6 @@
 package com.minicloud.service;
 
-import java.io.IOException;
 import java.io.Writer;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import org.apache.commons.net.smtp.AuthenticatingSMTPClient;
 import org.apache.commons.net.smtp.SimpleSMTPHeader;
@@ -89,8 +85,8 @@ public class AuthService {
                     wr.write(message);
                     wr.close();
                 }
-            } catch (IOException | InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException e) {
-                System.out.println("Error al enviar el email: " + e.getMessage());
+            } catch (Exception e) {
+                // TODO: handle exception
             }
         }
     }

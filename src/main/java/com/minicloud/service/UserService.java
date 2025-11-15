@@ -39,22 +39,22 @@ public class UserService {
         }
     }
 
-    public String existUser(String username, String email) {
-        boolean existsByUsername = userExistsByUsername(username);
+    public String existUser(String userName, String email) {
+        boolean existsByUserName = userExistsByUserName(userName);
         boolean existsByEmail = userExistsByEmail(email);
-        return "Exists by username: " + existsByUsername + ", Exists by email: " + existsByEmail;
+        return "Exists by username: " + existsByUserName + ", Exists by email: " + existsByEmail;
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User getUserByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
 
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public boolean userExistsByUsername(String username) {
-        return userRepository.existsByUsername(username);
+    public boolean userExistsByUserName(String userName) {
+        return userRepository.existsByUserName(userName);
     }
 
     public boolean userExistsByEmail(String email) {

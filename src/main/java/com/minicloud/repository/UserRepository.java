@@ -33,20 +33,22 @@ package com.minicloud.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.minicloud.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 
-    User findByUsername(String username);
+    User findByUserName(String userName);
     Optional<User> findByEmail(String email);
     User getUserById(Long id);
 
     //Comprobar autenticado
+    @Query("SELECT u.authenticated FROM User u WHERE u.email = :email")
     boolean isAuthenticated(String email);
 
     //Comprobar si existen
-    boolean existsByUsername(String username);
+    boolean existsByUserName(String userName);
     boolean existsByEmail(String email);
     
 }

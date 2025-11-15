@@ -27,11 +27,12 @@ public class FileService {
     }
 
     public FileMeta getFileMetaByName(String fileName) {
-        return fileRepository.findByName(fileName);
+        return fileRepository.findByFileName(fileName);
     }
 
     public FileMeta getFileMetaByNameAndUser(String fileName, String user) {
-        return fileRepository.findByNameAndUserCreator(fileName, user);
+        User userEntity = userRepository.findByUserName(user);
+        return fileRepository.findByFileNameAndUserCreator(fileName, userEntity);
     }
 
     public ResponseEntity<?> saveFileMeta(String fileName) {
@@ -62,9 +63,9 @@ public class FileService {
         }
     }
 
-    public ResponseEntity<?> getFilesByUser(String username) {
+    public ResponseEntity<?> getFilesByUser(String userName) {
         try {
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByUserName(userName);
             return ResponseEntity.ok(fileRepository.findByUserCreator(user));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

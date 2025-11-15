@@ -1,5 +1,13 @@
 package com.minicloud.service;
 
+import java.io.IOException;
+import java.io.Writer;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+import org.apache.commons.net.smtp.AuthenticatingSMTPClient;
+import org.apache.commons.net.smtp.SimpleSMTPHeader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +20,7 @@ import com.minicloud.model.User;
 import com.minicloud.repository.ROLErepository;
 import com.minicloud.repository.UserRepository;
 import com.minicloud.security.JWTutil;
+
 
 @Service
 public class AuthService {
@@ -55,6 +64,34 @@ public class AuthService {
             userRepository.save(user);
             
             // Logica para enviar el token via email
+            try {
+                String sender = ""; // Correo de minicloud
+                String password = ""; // Meter dentro de aplication properties
+                String receiver = user.getEmail();
+                String server = "smtp.gmail.com";
+
+                AuthenticatingSMTPClient smtp = new AuthenticatingSMTPClient("TLS", true);
+                smtp.setDefaultTimeout(2000);
+                smtp.connect(server, 465);
+                smtp.ehlo("localhost");
+
+                smtp.auth(AuthenticatingSMTPClient.AUTH_METHOD.PLAIN, sender, password);
+                smtp.setSender(sender);
+                smtp.addRecipient(receiver);
+
+                String subject = "Token de autenticación Minicloud";
+                String message = "Tu token de autenticación es: " + token;
+
+                SimpleSMTPHeader header = new SimpleSMTPHeader(sender, receiver, subject);
+                Writer wr = smtp.sendMessageData();
+                if (wr != null) {
+                    wr.write(header.toString());
+                    wr.write(message);
+                    wr.close();
+                }
+            } catch (IOException | InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+                System.out.println("Error al enviar el email: " + e.getMessage());
+            }
         }
     }
 

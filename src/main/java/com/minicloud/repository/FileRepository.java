@@ -34,6 +34,7 @@
 package com.minicloud.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -42,7 +43,7 @@ import com.minicloud.model.User;
 
 public interface FileRepository extends JpaRepository<FileMeta, Long> {
     
-    List<FileMeta> findByUserCreator(User userCreator);
+    List<FileMeta> findByUserCreator(Optional<User> user);
     FileMeta findByFileNameAndUserCreator(String fileName, User userCreator);
     FileMeta findByFileName(String fileName);
 

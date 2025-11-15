@@ -39,9 +39,9 @@ import com.minicloud.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 
-    User findByUserName(String userName);
+    Optional<User> findByUserName(String userName);
     Optional<User> findByEmail(String email);
-    User getUserById(Long id);
+    Optional<User> getUserById(Long id);
 
     //Comprobar autenticado
     @Query("SELECT u.authenticated FROM User u WHERE u.email = :email")

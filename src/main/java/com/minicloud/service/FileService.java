@@ -1,6 +1,7 @@
 package com.minicloud.service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,8 @@ public class FileService {
     }
 
     public FileMeta getFileMetaByNameAndUser(String fileName, String user) {
-        User userEntity = userRepository.findByUserName(user);
-        return fileRepository.findByFileNameAndUserCreator(fileName, userEntity);
+        Optional<User> userEntity = userRepository.findByUserName(user);
+        return fileRepository.findByFileNameAndUserCreator(fileName, userEntity.orElse(null));
     }
 
     public ResponseEntity<?> saveFileMeta(String fileName) {
@@ -52,8 +53,8 @@ public class FileService {
 
     public ResponseEntity<?> uploadFile(MultipartFile file, Long userId) {
         try {
-            User user = userRepository.getUserById(userId);
-            FileMeta fileMeta = new FileMeta(file.getOriginalFilename(), user, file.getBytes());
+            Optional<User> user = userRepository.getUserById(userId);
+            FileMeta fileMeta = new FileMeta(file.getOriginalFilename(), user.orElse(null), file.getBytes());
 
             FileMeta savedFile = fileRepository.save(fileMeta);
 
@@ -65,7 +66,7 @@ public class FileService {
 
     public ResponseEntity<?> getFilesByUser(String userName) {
         try {
-            User user = userRepository.findByUserName(userName);
+            Optional<User> user = userRepository.findByUserName(userName);
             return ResponseEntity.ok(fileRepository.findByUserCreator(user));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

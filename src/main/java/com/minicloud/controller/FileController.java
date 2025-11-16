@@ -15,7 +15,7 @@ import com.minicloud.service.FileService;
 
 
 @RestController
-@RequestMapping("/api/files")
+@RequestMapping("/minicloud/files")
 public class FileController {
     
     @Autowired

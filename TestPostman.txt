@@ -1,0 +1,49 @@
+V1. TEST REALIZADOS A URL:
+
+        FUNCIONANDO ✅
+        POR PROBAR ✍️
+        NO FUNCIONA ❌
+
+AUTH:
+    /minicloud/auth/register ✍️
+    /minicloud/auth/authenticate/{email} ✍️
+    /minicloud/auth/login ✍️
+
+
+FILE:
+    /minicloud/files/upload ✍️
+    /minicloud/files/download/{filename} ✍️
+    /minicloud/files/by-user/{userName} ✍️
+    /minicloud/files/delete/{id} ✍️
+
+USER: (Solo pruebas)
+    /minicloud/users/create ✍️
+    /minicloud/users/delete/{id} ✍️
+    /minicloud/users/exists/{username}/{email} ✍️
+
+
+            CONCLUSION V1:  
+
+
+V2. TEST REALIZADOS A URL:
+
+        FUNCIONANDO
+        POR PROBAR
+        NO FUNCIONA
+
+AUTH:
+    /minicloud/auth/register
+    /minicloud/auth/authenticate/{email}
+    /minicloud/auth/login
+
+
+FILE:
+    /minicloud/files/upload
+    /minicloud/files/download/{filename}
+    /minicloud/files/by-user/{userName}
+    /minicloud/files/delete/{id}
+
+USER: (Solo pruebas)
+    /minicloud/users/create
+    /minicloud/users/delete/{id}
+    /minicloud/users/exists/{username}/{email}

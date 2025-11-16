@@ -13,7 +13,7 @@ import com.minicloud.model.User;
 import com.minicloud.service.AuthService;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/minicloud/auth")
 public class AuthController {
 
     @Autowired private AuthService authService;

@@ -15,7 +15,7 @@ import com.minicloud.mapper.UserMapper;
 import com.minicloud.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/minicloud/users")
 public class UserController {
 
     @Autowired

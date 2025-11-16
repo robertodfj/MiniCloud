@@ -23,8 +23,11 @@ public class FileService {
     @Autowired
     private UserRepository userRepository;
 
-    public FileMeta getFileMetaById(Long id) {
-        return fileRepository.findById(id).orElse(null);
+    public ResponseEntity<FileMeta> getFileMetaById(Long id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.of(fileRepository.findById(id));
     }
 
     public FileMeta getFileMetaByName(String fileName) {
@@ -74,6 +77,9 @@ public class FileService {
     }
 
     public ResponseEntity<?> deleteFile(Long id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
         try {
             fileRepository.deleteById(id);
             return ResponseEntity.ok("File deleted successfully");

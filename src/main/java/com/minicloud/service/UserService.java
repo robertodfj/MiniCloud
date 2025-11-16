@@ -30,6 +30,9 @@ public class UserService {
     }
 
     public String deleteUser(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("User ID must not be null");
+        }
         if (!userRepository.existsById(id)) {
             throw new IllegalArgumentException("User not found with id: " + id);
         }
@@ -52,6 +55,9 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("User ID must not be null");
+        }
         return userRepository.findById(id).orElse(null);
     }
 

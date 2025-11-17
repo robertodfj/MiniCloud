@@ -74,6 +74,7 @@ public class AuthService {
     if (user == null) return;
 
     int token = (int) (Math.random() * 900000) + 100000;
+    System.out.println("Generated token for " + email + ": " + token); // Log the token for debugging
     user.setAuthenticationToken(token);
     userRepository.save(user);
 
@@ -127,6 +128,7 @@ public class AuthService {
         if (user != null && user.getAuthenticationToken() == token) {
             user.setAuthenticated(true);
             userRepository.save(user);
+            System.out.println("Usuario " + email + " autenticado correctamente.");
             return true;
         }
         return false;

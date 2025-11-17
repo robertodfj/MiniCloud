@@ -5,9 +5,9 @@ V1. TEST REALIZADOS A URL:
         NO FUNCIONA ❌
 
 AUTH:
-    /minicloud/auth/register ✍️
-    /minicloud/auth/authenticate/{email} ✍️
-    /minicloud/auth/login ✍️
+    /minicloud/auth/register ✍️ ✅
+    /minicloud/auth/authenticate/{email} ✍️ ✅
+    /minicloud/auth/login ✍️ 
 
 
 FILE:

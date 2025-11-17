@@ -1,14 +1,16 @@
 package com.minicloud.security;
 
 import java.util.Date;
-import io.jsonwebtoken.*;
-import io.jsonwebtoken.security.Keys;
 
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
 @Component
 public class JWTutil {
-    private final String SECRET_KEY = "minicloud_secret_key_12345";   
+    private final String SECRET_KEY = "EstaEsUnaClaveMuyLargaDeAlMenos32Bytes!!";   
     private final long EXPIRATION_TIME = 86400000; // 24H
 
     public String generateToken(String username) {

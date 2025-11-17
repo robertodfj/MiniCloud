@@ -10,8 +10,6 @@ import org.apache.commons.net.smtp.AuthenticatingSMTPClient;
 import org.apache.commons.net.smtp.SimpleSMTPHeader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,6 @@ import com.minicloud.security.JWTutil;
 @Service
 public class AuthService {
     
-    @Autowired private AuthenticationManager authenticationManager;
     @Autowired private JWTutil jwtUtil;
     @Autowired private UserRepository userRepository;
     @Autowired private ROLErepository roleRepository;
@@ -57,14 +54,20 @@ public class AuthService {
     }
 
     public AuthResponse login(AuthRequest request) {
-        User user = userRepository.findByEmail(request.getEmail()).orElse(null);
-        if (user == null || !user.isAuthenticated()) {
-            throw new IllegalArgumentException("Usuario no autenticado o no existe.");
+        User user = userRepository.findByEmail(request.getEmail())
+                    .orElseThrow(() -> new IllegalArgumentException("Usuario no existe"));
+
+        // Verifica la contraseña con BCrypt
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Contraseña incorrecta");
         }
 
-        authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
+        // Solo permitir generar JWT si el usuario está autenticado
+        if (!user.isAuthenticated()) {
+            throw new IllegalArgumentException("Usuario no ha confirmado el token de email.");
+        }
+
+        // Genera JWT
         String token = jwtUtil.generateToken(request.getEmail());
         return new AuthResponse(token);
     }

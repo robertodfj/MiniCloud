@@ -4,10 +4,10 @@ V1. TEST REALIZADOS A URL:
         POR PROBAR ✍️
         NO FUNCIONA ❌
 
-AUTH:
+AUTH: ✅✅✅
     /minicloud/auth/register ✍️ ✅
     /minicloud/auth/authenticate/{email} ✍️ ✅
-    /minicloud/auth/login ✍️ 
+    /minicloud/auth/login ✍️ ✅
 
 
 FILE:

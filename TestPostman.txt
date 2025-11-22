@@ -14,7 +14,7 @@ AUTH: ✅✅✅
 
 FILE:
     /minicloud/files/upload ✍️ ✅
-    /minicloud/files/download/{filename} ✍️
+    /minicloud/files/download/{filename} ✍️ ✅
     /minicloud/files/by-user/{userName} ✍️
     /minicloud/files/delete/{id} ✍️
 

@@ -37,7 +37,7 @@ public class FileService {
     public FileMeta getFileMetaByNameAndUser(String fileName, String user) {
         Optional<User> userEntity = userRepository.findByUserName(user);
         return fileRepository.findByFileNameAndUserCreator(fileName, userEntity.orElse(null));
-    }
+    } 
 
     public ResponseEntity<?> saveFileMeta(String fileName) {
          try {

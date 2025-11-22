@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.minicloud.dto.AuthRequest;
 import com.minicloud.dto.AuthResponse;
+import com.minicloud.model.ROLE;
 import com.minicloud.model.User;
 import com.minicloud.repository.ROLErepository;
 import com.minicloud.repository.UserRepository;
@@ -44,7 +45,8 @@ public class AuthService {
     public String register(User user) {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRole(roleRepository.findByName("ROLE_USER"));
+            ROLE userRole = roleRepository.findByName("ROLE_USER");
+            user.setRole(userRole);
             userRepository.save(user);
             generateToken(user.getEmail());
             return "Usuario registrado correctamente, revisa el email para el token de autenticación.";

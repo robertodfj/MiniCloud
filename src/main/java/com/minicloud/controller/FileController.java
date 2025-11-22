@@ -42,10 +42,6 @@ public class FileController {
         return fileService.saveFileMeta(fileName);
     }
 
-    @GetMapping("/by-user/{userName}")
-    public ResponseEntity<?> getFilesByUser(@PathVariable("userName") String userName) {
-        return fileService.getFilesByUser(userName);
-    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteFile(@PathVariable("id") Long id) {

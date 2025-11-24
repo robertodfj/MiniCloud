@@ -19,7 +19,7 @@ FILE:
 
 USER: (Solo pruebas)
     /minicloud/users/create ✍️✅
-    /minicloud/users/delete/{id} ✍️
+    /minicloud/users/delete/{id} ✍️✅
     /minicloud/users/exists/{username}/{email} ✍️
 
 

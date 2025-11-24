@@ -20,7 +20,7 @@ FILE:
 USER: (Solo pruebas)
     /minicloud/users/create ✍️✅
     /minicloud/users/delete/{id} ✍️✅
-    /minicloud/users/exists/{username}/{email} ✍️
+    /minicloud/users/exists/{username}/{email} ✍️✅
 
 
             CONCLUSION V1:  Realizar la devolucion completa del archivo al descargar no leerlo.

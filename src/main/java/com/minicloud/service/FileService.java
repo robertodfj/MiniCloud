@@ -65,7 +65,7 @@ public class FileService {
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-    }
+    } 
 
     public ResponseEntity<?> getFilesByUser(String userName) {
         try {
